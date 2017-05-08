@@ -120,7 +120,30 @@ var getNote = (title) => {
 };
 
 var removeNote = (title) => {
-  console.log("Removing Notes with title", title);
+  // console.log("Removing Notes with title", title);
+    /**
+     * ##################################
+     * ## Removing Notes ################
+     * ##################################
+     */
+    // Fetch Notes
+    var notes = fetchNotes();
+
+    // Filter Notes, removing the one with the title of argument
+    var filteredNotes = notes.filter((note) => note.title !== title);
+
+    // save new notes array.
+
+    saveNotes(filteredNotes);
+
+    // console.log(filteredNotes);
+
+    // How do we know if the notes with a particular title
+    // removed or not.
+    // We will compare the length of notes and filteredNotes.
+    // If they match then note is not removed and if they don't
+    // match note is removed.
+    return (notes.length !== filteredNotes.length);
 };
 // We can define an entire object as exports
 

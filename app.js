@@ -178,8 +178,17 @@ if (command === 'add') {
     notes.getNote(argv.title);
     // console.log('Reading Notes');
 } else if (command === 'remove'){
-    notes.removeNote(argv.title);
+    var noteRemoved = notes.removeNote(argv.title);
     // console.log('Removing Notes.');
+    // if (removednote) {
+    //     console.log("Note Removed");
+    // } else {
+    //     console.log("Note Not Removed");
+    // }
+    // We are going to replace above if else condition with terinary operator
+
+    var message = noteRemoved ? `Note Removed` : `Note Not Found`;
+    console.log(message);
 } else {
     console.log('command not recognized.');
 }
