@@ -11,7 +11,7 @@ console.log('Starting app.js.')
  * * */
 
 // Create a file and append some text into it.
-// require loads in module functionality so we can
+    // require : loads in module functionality.
 
 const fs = require('fs');
 const os = require('os');
@@ -163,11 +163,7 @@ if (command === 'add') {
     var note = notes.addNote(argv.title, argv.body);
     if (note) {
         console.log("Note Created");
-        console.log("---");
-        // console.log("Title:" + note.title);
-        // ES6 Syntax
-        console.log(`Title: ${note.title}`);
-        console.log(`Body: ${note.body}`);
+        notes.logNote(note);
     } else {
         console.log("Note already exists");
     }
@@ -175,7 +171,10 @@ if (command === 'add') {
     // console.log('Listing all Notes.');
     notes.getAll();
 } else if (command === 'read'){
-    notes.getNote(argv.title);
+    var note = notes.getNote(argv.title);
+
+    var message = note ? notes.logNote(note): `Note not Found`;
+
     // console.log('Reading Notes');
 } else if (command === 'remove'){
     var noteRemoved = notes.removeNote(argv.title);

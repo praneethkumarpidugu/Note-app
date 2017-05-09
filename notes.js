@@ -116,7 +116,15 @@ var getAll = () => {
 };
 
 var getNote = (title) => {
-  console.log('Getting Title', title)
+// Fetch Notes
+    var notes = fetchNotes();
+
+//    Filter notes if arguments title === title
+    var filteredNotes = notes.filter((note) => note.title === title);
+
+
+//    return the first item in the filteredNotes
+    return filteredNotes[0];
 };
 
 var removeNote = (title) => {
@@ -145,11 +153,20 @@ var removeNote = (title) => {
     // match note is removed.
     return (notes.length !== filteredNotes.length);
 };
+
+//log Note Function
+
+var logNote = (note) => {
+    console.log("---");
+    console.log(`title: ${note.title}`);
+    console.log(`body: ${note.body}`);
+};
 // We can define an entire object as exports
 
 module.exports = {
   addNote,
     getAll,
     getNote,
-    removeNote
+    removeNote,
+    logNote
 };
