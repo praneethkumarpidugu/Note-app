@@ -112,7 +112,7 @@ var addNote = (title, body) => {
 
 
 var getAll = () => {
-  console.log('Getting ALL');
+  return fetchNotes();
 };
 
 var getNote = (title) => {

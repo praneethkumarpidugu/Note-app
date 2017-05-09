@@ -169,7 +169,14 @@ if (command === 'add') {
     }
 } else if (command === 'list') {
     // console.log('Listing all Notes.');
-    notes.getAll();
+    // debugger;
+    var allNotes = notes.getAll();
+    console.log(`Printing ${allNotes.length} note(s).`);
+
+//    To represent out notes list a bit nice
+//    we are going to utilize logNotes utility
+//    notes.js
+    allNotes.forEach((note) => notes.logNote(note));
 } else if (command === 'read'){
     var note = notes.getNote(argv.title);
 
