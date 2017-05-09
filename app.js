@@ -149,12 +149,50 @@ const _ = require('lodash');
  * argv is the arguments vector.
  *
  * https://nodejs.org/api/process.html#process_process
+ *
+ * .command(cmd, desc, [builder], [handler])
+ *
+ * builder is the object to give hints.
  */
 
 // console.log(process.argv);
 
 var command = process.argv[2];
-const argv = yargs.argv;
+
+/**
+ * Here we are going define our commands which will be similar
+ * to options you when we instantiate npm init
+ *
+ * https://www.npmjs.com/package/yargs#commandmodule
+ *
+ */
+
+const titleOptions = {
+    describe: 'Title of the note',
+    demand:true,
+    alias: 't'
+};
+
+const bodyOptions = {
+    describe: 'Body of the note',
+    demand: true,
+    alias: 'b'
+};
+
+const argv = yargs
+    .command('add', 'Add a new note', {
+        title: titleOptions,
+        body: bodyOptions
+    })
+    .command('list', 'Listing all notes')
+    .command('read', 'Reading a note', {
+        title: titleOptions
+    })
+    .command('remove', 'Removing a note', {
+        title: titleOptions
+    })
+    .help()
+    .argv;
 console.log("Command: ", command);
 
 if (command === 'add') {
